@@ -152,6 +152,24 @@
   ul.tasklist li span.txt{display:inline;}
   ul.tasklist li .pic-trigger{vertical-align:middle; margin-left:6px;}
 
+  .del-row-btn{
+    display:none; vertical-align:middle; margin-left:6px;
+    width:20px; height:20px; border-radius:50%; border:1px solid var(--line);
+    background:var(--surface); color:var(--ink-muted); font-size:0.85rem; line-height:1;
+    cursor:pointer; padding:0;
+  }
+  body.is-editing .del-row-btn{display:inline-flex; align-items:center; justify-content:center;}
+  .del-row-btn:hover{background:#c0392b; color:#fff; border-color:#c0392b;}
+
+  .add-row-btn{
+    display:none; margin-top:8px; border:1px dashed var(--line); background:transparent;
+    color:var(--ink-muted); font-size:0.82rem; padding:6px 12px; border-radius:8px;
+    cursor:pointer; width:100%;
+  }
+  body.is-editing .add-row-btn{display:block;}
+  .add-row-btn:hover{border-color:var(--accent); color:var(--accent);}
+  .role-col .add-row-btn{margin-top:6px;}
+
   .flat-list{margin-top:4px;}
   .flat-list li{font-size:0.95rem;}
   .flat-list li.sub{font-size:0.86rem; color:var(--ink-muted); padding-left:26px;}
@@ -291,18 +309,20 @@
 <div class="role-col">
 <div class="role-name"><span class="edit" data-key="e0">hot food</span></div>
 <ul class="tasklist">
-<li><span class="txt"><span class="edit" data-key="e1">cool trolly 摆放</span></span></li>
-<li><span class="txt"><span class="edit" data-key="e2">热水给 buffet／牛奶和碎冰／sauce／夹子／咖啡</span></span></li>
-<li><span class="txt"><span class="edit" data-key="e3">3楼拿熟食／分装</span></span></li>
+<li><span class="txt"><span class="edit" data-key="e1">cool trolly 摆放</span></span><button type="button" class="del-row-btn" title="删除这一行">&times;</button></li>
+<li><span class="txt"><span class="edit" data-key="e2">热水给 buffet／牛奶和碎冰／sauce／夹子／咖啡</span></span><button type="button" class="del-row-btn" title="删除这一行">&times;</button></li>
+<li><span class="txt"><span class="edit" data-key="e3">3楼拿熟食／分装</span></span><button type="button" class="del-row-btn" title="删除这一行">&times;</button></li>
 </ul>
+<button type="button" class="add-row-btn">＋ 添加一行</button>
 </div>
 <div class="role-col">
 <div class="role-name"><span class="edit" data-key="e4">pastry</span></div>
 <ul class="tasklist">
-<li><span class="txt"><span class="edit" data-key="e5">拿 pastry 所有 and 5个水果篮子放到外面</span></span></li>
-<li><span class="txt"><span class="edit" data-key="e6">开面包机／电磁炉</span></span></li>
-<li><span class="txt"><span class="edit" data-key="e7">去1楼拿报纸和鸡蛋（也可以一并拿水果）</span></span></li>
+<li><span class="txt"><span class="edit" data-key="e5">拿 pastry 所有 and 5个水果篮子放到外面</span></span><button type="button" class="del-row-btn" title="删除这一行">&times;</button></li>
+<li><span class="txt"><span class="edit" data-key="e6">开面包机／电磁炉</span></span><button type="button" class="del-row-btn" title="删除这一行">&times;</button></li>
+<li><span class="txt"><span class="edit" data-key="e7">去1楼拿报纸和鸡蛋（也可以一并拿水果）</span></span><button type="button" class="del-row-btn" title="删除这一行">&times;</button></li>
 </ul>
+<button type="button" class="add-row-btn">＋ 添加一行</button>
 </div>
 </div>
 </article>
@@ -316,25 +336,28 @@
 <div class="role-col">
 <div class="role-name"><span class="edit" data-key="e11">buffet</span></div>
 <ul class="tasklist">
-<li><span class="txt"><span class="edit" data-key="e12">整理货架／补货</span></span></li>
-<li><span class="txt"><span class="edit" data-key="e13">关注 buffet／酸奶麦片</span></span></li>
-<li><span class="txt"><span class="edit" data-key="e14">不忙可帮忙</span></span></li>
+<li><span class="txt"><span class="edit" data-key="e12">整理货架／补货</span></span><button type="button" class="del-row-btn" title="删除这一行">&times;</button></li>
+<li><span class="txt"><span class="edit" data-key="e13">关注 buffet／酸奶麦片</span></span><button type="button" class="del-row-btn" title="删除这一行">&times;</button></li>
+<li><span class="txt"><span class="edit" data-key="e14">不忙可帮忙</span></span><button type="button" class="del-row-btn" title="删除这一行">&times;</button></li>
 </ul>
+<button type="button" class="add-row-btn">＋ 添加一行</button>
 </div>
 <div class="role-col">
 <div class="role-name"><span class="edit" data-key="e15">floor</span></div>
 <ul class="tasklist">
-<li><span class="txt"><span class="edit" data-key="e16">清洁区／垃圾袋／咖啡 tin 2个／茶包／桌椅／音乐等细节检查</span></span></li>
-<li><span class="txt"><span class="edit" data-key="e17">清理桌面／咖啡机附近一切／果汁</span></span></li>
-<li><span class="txt"><span class="edit" data-key="e18">查看 EAL（9点／11点）</span></span></li>
-<li><span class="txt"><span class="edit" data-key="e19">餐车清理</span></span></li>
+<li><span class="txt"><span class="edit" data-key="e16">清洁区／垃圾袋／咖啡 tin 2个／茶包／桌椅／音乐等细节检查</span></span><button type="button" class="del-row-btn" title="删除这一行">&times;</button></li>
+<li><span class="txt"><span class="edit" data-key="e17">清理桌面／咖啡机附近一切／果汁</span></span><button type="button" class="del-row-btn" title="删除这一行">&times;</button></li>
+<li><span class="txt"><span class="edit" data-key="e18">查看 EAL（9点／11点）</span></span><button type="button" class="del-row-btn" title="删除这一行">&times;</button></li>
+<li><span class="txt"><span class="edit" data-key="e19">餐车清理</span></span><button type="button" class="del-row-btn" title="删除这一行">&times;</button></li>
 </ul>
+<button type="button" class="add-row-btn">＋ 添加一行</button>
 </div>
 <div class="role-col">
 <div class="role-name"><span class="edit" data-key="e20">第三人</span></div>
 <ul class="tasklist">
-<li><span class="txt"><span class="edit" data-key="e21">擦／补充餐具盘子</span></span></li>
+<li><span class="txt"><span class="edit" data-key="e21">擦／补充餐具盘子</span></span><button type="button" class="del-row-btn" title="删除这一行">&times;</button></li>
 </ul>
+<button type="button" class="add-row-btn">＋ 添加一行</button>
 </div>
 </div>
 </article>
@@ -347,26 +370,29 @@
 <div class="role-col">
 <div class="role-name"><span class="edit" data-key="e25">buffet</span></div>
 <ul class="tasklist">
-<li><span class="txt"><span class="edit" data-key="e26">最后一次 top up 食物</span></span></li>
-<li><span class="txt"><span class="edit" data-key="e27">干货／jam／麦片</span></span></li>
-<li><span class="txt"><span class="edit" data-key="e28">清理 hot box 和 cool trolly</span></span></li>
-<li><span class="txt"><span class="edit" data-key="e29">准备关早餐的事项（盘子…）</span></span></li>
+<li><span class="txt"><span class="edit" data-key="e26">最后一次 top up 食物</span></span><button type="button" class="del-row-btn" title="删除这一行">&times;</button></li>
+<li><span class="txt"><span class="edit" data-key="e27">干货／jam／麦片</span></span><button type="button" class="del-row-btn" title="删除这一行">&times;</button></li>
+<li><span class="txt"><span class="edit" data-key="e28">清理 hot box 和 cool trolly</span></span><button type="button" class="del-row-btn" title="删除这一行">&times;</button></li>
+<li><span class="txt"><span class="edit" data-key="e29">准备关早餐的事项（盘子…）</span></span><button type="button" class="del-row-btn" title="删除这一行">&times;</button></li>
 </ul>
+<button type="button" class="add-row-btn">＋ 添加一行</button>
 </div>
 <div class="role-col">
 <div class="role-name"><span class="edit" data-key="e30">floor</span></div>
 <ul class="tasklist">
-<li><span class="txt"><span class="edit" data-key="e31">酸奶／果汁补满</span></span></li>
-<li><span class="txt"><span class="edit" data-key="e32">收集盐胡椒</span></span></li>
-<li><span class="txt"><span class="edit" data-key="e33">清理 clean station</span></span></li>
+<li><span class="txt"><span class="edit" data-key="e31">酸奶／果汁补满</span></span><button type="button" class="del-row-btn" title="删除这一行">&times;</button></li>
+<li><span class="txt"><span class="edit" data-key="e32">收集盐胡椒</span></span><button type="button" class="del-row-btn" title="删除这一行">&times;</button></li>
+<li><span class="txt"><span class="edit" data-key="e33">清理 clean station</span></span><button type="button" class="del-row-btn" title="删除这一行">&times;</button></li>
 </ul>
+<button type="button" class="add-row-btn">＋ 添加一行</button>
 </div>
 <div class="role-col">
 <div class="role-name"><span class="edit" data-key="e34">第三人</span></div>
 <ul class="tasklist">
-<li><span class="txt"><span class="edit" data-key="e35">擦／补充餐具盘子</span></span></li>
-<li><span class="txt"><span class="edit" data-key="e36">清理 clean station</span></span></li>
+<li><span class="txt"><span class="edit" data-key="e35">擦／补充餐具盘子</span></span><button type="button" class="del-row-btn" title="删除这一行">&times;</button></li>
+<li><span class="txt"><span class="edit" data-key="e36">清理 clean station</span></span><button type="button" class="del-row-btn" title="删除这一行">&times;</button></li>
 </ul>
+<button type="button" class="add-row-btn">＋ 添加一行</button>
 </div>
 </div>
 </article>
@@ -380,30 +406,33 @@
 <div class="role-col">
 <div class="role-name"><span class="edit" data-key="e39">food</span></div>
 <ul class="tasklist">
-<li><span class="txt"><span class="edit" data-key="e40">清理除 pastry 外的所有食物（用具锅等留下）</span></span></li>
-<li><span class="txt"><span class="edit" data-key="e41">处理食物 trolly</span></span></li>
-<li><span class="txt"><span class="edit" data-key="e42">stock／form 发到群里</span></span></li>
-<li><span class="txt"><span class="edit" data-key="e43">清洗所有容器</span></span></li>
+<li><span class="txt"><span class="edit" data-key="e40">清理除 pastry 外的所有食物（用具锅等留下）</span></span><button type="button" class="del-row-btn" title="删除这一行">&times;</button></li>
+<li><span class="txt"><span class="edit" data-key="e41">处理食物 trolly</span></span><button type="button" class="del-row-btn" title="删除这一行">&times;</button></li>
+<li><span class="txt"><span class="edit" data-key="e42">stock／form 发到群里</span></span><button type="button" class="del-row-btn" title="删除这一行">&times;</button></li>
+<li><span class="txt"><span class="edit" data-key="e43">清洗所有容器</span></span><button type="button" class="del-row-btn" title="删除这一行">&times;</button></li>
 </ul>
+<button type="button" class="add-row-btn">＋ 添加一行</button>
 </div>
 <div class="role-col">
 <div class="role-name"><span class="edit" data-key="e44">pastry</span></div>
 <ul class="tasklist">
-<li><span class="txt"><span class="edit" data-key="e45">清理 pastry</span></span></li>
-<li><span class="txt"><span class="edit" data-key="e46">整理 pastry</span></span></li>
-<li><span class="txt"><span class="edit" data-key="e47">归还所有食物并取晚间餐车＋午间点心</span></span></li>
-<li><span class="txt"><span class="edit" data-key="e48">摆好午间点心及4种果汁放入冰箱</span></span></li>
-<li><span class="txt"><span class="edit" data-key="e49">清洗所有容器</span></span></li>
+<li><span class="txt"><span class="edit" data-key="e45">清理 pastry</span></span><button type="button" class="del-row-btn" title="删除这一行">&times;</button></li>
+<li><span class="txt"><span class="edit" data-key="e46">整理 pastry</span></span><button type="button" class="del-row-btn" title="删除这一行">&times;</button></li>
+<li><span class="txt"><span class="edit" data-key="e47">归还所有食物并取晚间餐车＋午间点心</span></span><button type="button" class="del-row-btn" title="删除这一行">&times;</button></li>
+<li><span class="txt"><span class="edit" data-key="e48">摆好午间点心及4种果汁放入冰箱</span></span><button type="button" class="del-row-btn" title="删除这一行">&times;</button></li>
+<li><span class="txt"><span class="edit" data-key="e49">清洗所有容器</span></span><button type="button" class="del-row-btn" title="删除这一行">&times;</button></li>
 </ul>
+<button type="button" class="add-row-btn">＋ 添加一行</button>
 </div>
 <div class="role-col">
 <div class="role-name"><span class="edit" data-key="e50">第三人</span></div>
 <ul class="tasklist">
-<li><span class="txt"><span class="edit" data-key="e51">清理客人用餐区</span></span></li>
-<li><span class="txt"><span class="edit" data-key="e52">清理 buffet 用具</span></span></li>
-<li><span class="txt"><span class="edit" data-key="e53">烤面包机清理并放回柜子</span></span></li>
-<li><span class="txt"><span class="edit" data-key="e54">擦餐具</span></span></li>
+<li><span class="txt"><span class="edit" data-key="e51">清理客人用餐区</span></span><button type="button" class="del-row-btn" title="删除这一行">&times;</button></li>
+<li><span class="txt"><span class="edit" data-key="e52">清理 buffet 用具</span></span><button type="button" class="del-row-btn" title="删除这一行">&times;</button></li>
+<li><span class="txt"><span class="edit" data-key="e53">烤面包机清理并放回柜子</span></span><button type="button" class="del-row-btn" title="删除这一行">&times;</button></li>
+<li><span class="txt"><span class="edit" data-key="e54">擦餐具</span></span><button type="button" class="del-row-btn" title="删除这一行">&times;</button></li>
 </ul>
+<button type="button" class="add-row-btn">＋ 添加一行</button>
 </div>
 </div>
 <div class="closing-note"><span class="edit" data-key="e57">对应点心和饮料，pastry 是下午班人的工作</span></div>
@@ -417,9 +446,10 @@
 </div>
 <h2 class="phase-title"><span class="edit" data-key="e61">开场准备</span></h2>
 <ul class="tasklist flat-list">
-<li><span class="txt"><span class="edit" data-key="e58">清理桌子中间的甜品（扔掉）</span></span></li>
-<li><span class="txt"><span class="edit" data-key="e59">糖／饼干放到靠墙的地方</span></span><button type="button" class="pic-trigger" data-imgs="9"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg><span class="n">看图</span></button></li>
+<li><span class="txt"><span class="edit" data-key="e58">清理桌子中间的甜品（扔掉）</span></span><button type="button" class="del-row-btn" title="删除这一行">&times;</button></li>
+<li><span class="txt"><span class="edit" data-key="e59">糖／饼干放到靠墙的地方</span></span><button type="button" class="pic-trigger" data-imgs="9"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg><span class="n">看图</span></button><button type="button" class="del-row-btn" title="删除这一行">&times;</button></li>
 </ul>
+<button type="button" class="add-row-btn">＋ 添加一行</button>
 </article>
 <article class="phase" data-start="960" data-end="990">
 <div class="phase-head">
@@ -428,9 +458,10 @@
 </div>
 <h2 class="phase-title"><span class="edit" data-key="e65">Cool food 摆外面</span></h2>
 <ul class="tasklist flat-list">
-<li><span class="txt"><span class="edit" data-key="e62">sushi 留最后放，都不去掉 wrap</span></span></li>
-<li><span class="txt"><span class="edit" data-key="e63">各种饼干／butter／酱料4种／筷子／酱油摆好</span></span></li>
+<li><span class="txt"><span class="edit" data-key="e62">sushi 留最后放，都不去掉 wrap</span></span><button type="button" class="del-row-btn" title="删除这一行">&times;</button></li>
+<li><span class="txt"><span class="edit" data-key="e63">各种饼干／butter／酱料4种／筷子／酱油摆好</span></span><button type="button" class="del-row-btn" title="删除这一行">&times;</button></li>
 </ul>
+<button type="button" class="add-row-btn">＋ 添加一行</button>
 </article>
 <article class="phase" data-start="990" data-end="1005">
 <div class="phase-head">
@@ -441,19 +472,21 @@
 <div class="role-col">
 <div class="role-name"><span class="edit" data-key="e66">pick up 3楼食物</span></div>
 <ul class="tasklist">
-<li><span class="txt"><span class="edit" data-key="e67">pastry（带纸条）bread（篮子里）</span></span></li>
-<li><span class="txt"><span class="edit" data-key="e68">冰箱里：以群里的消息为准，水果盘／菜单</span></span></li>
-<li><span class="txt"><span class="edit" data-key="e69">hot box ＋ 4个红色圆点盘子</span></span></li>
+<li><span class="txt"><span class="edit" data-key="e67">pastry（带纸条）bread（篮子里）</span></span><button type="button" class="del-row-btn" title="删除这一行">&times;</button></li>
+<li><span class="txt"><span class="edit" data-key="e68">冰箱里：以群里的消息为准，水果盘／菜单</span></span><button type="button" class="del-row-btn" title="删除这一行">&times;</button></li>
+<li><span class="txt"><span class="edit" data-key="e69">hot box ＋ 4个红色圆点盘子</span></span><button type="button" class="del-row-btn" title="删除这一行">&times;</button></li>
 </ul>
+<button type="button" class="add-row-btn">＋ 添加一行</button>
 </div>
 <div class="role-col">
 <div class="role-name"><span class="edit" data-key="e70">准备酒水</span><button type="button" class="pic-trigger" data-imgs="13,14"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg><span class="n">看图 2</span></button></div>
 <ul class="tasklist">
-<li><span class="txt"><span class="edit" data-key="e71">8种酒换瓶头</span></span></li>
-<li><span class="txt"><span class="edit" data-key="e72">2种调味酒</span></span></li>
-<li><span class="txt"><span class="edit" data-key="e73">2种红酒，各5瓶</span></span></li>
-<li><span class="txt"><span class="edit" data-key="e74">drink water half／lemon 和 lime／ice bucket</span></span></li>
+<li><span class="txt"><span class="edit" data-key="e71">8种酒换瓶头</span></span><button type="button" class="del-row-btn" title="删除这一行">&times;</button></li>
+<li><span class="txt"><span class="edit" data-key="e72">2种调味酒</span></span><button type="button" class="del-row-btn" title="删除这一行">&times;</button></li>
+<li><span class="txt"><span class="edit" data-key="e73">2种红酒，各5瓶</span></span><button type="button" class="del-row-btn" title="删除这一行">&times;</button></li>
+<li><span class="txt"><span class="edit" data-key="e74">drink water half／lemon 和 lime／ice bucket</span></span><button type="button" class="del-row-btn" title="删除这一行">&times;</button></li>
 </ul>
+<button type="button" class="add-row-btn">＋ 添加一行</button>
 </div>
 </div>
 </article>
@@ -463,10 +496,11 @@
 </div>
 <h2 class="phase-title"><span class="edit" data-key="e81">分装食物 ＋ 外面 set</span></h2>
 <ul class="tasklist flat-list">
-<li><span class="txt"><span class="edit" data-key="e77">分装食物，准备好放 trolly 上</span></span></li>
-<li><span class="txt"><span class="edit" data-key="e78">hot box 可以不着急整理，最后有时间再弄</span></span></li>
-<li><span class="txt"><span class="edit" data-key="e79">4:45 外面 set：并开 wrap／标签／电磁炉</span></span><button type="button" class="pic-trigger" data-imgs="15,16,17,18,19"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg><span class="n">看图 5</span></button></li>
+<li><span class="txt"><span class="edit" data-key="e77">分装食物，准备好放 trolly 上</span></span><button type="button" class="del-row-btn" title="删除这一行">&times;</button></li>
+<li><span class="txt"><span class="edit" data-key="e78">hot box 可以不着急整理，最后有时间再弄</span></span><button type="button" class="del-row-btn" title="删除这一行">&times;</button></li>
+<li><span class="txt"><span class="edit" data-key="e79">4:45 外面 set：并开 wrap／标签／电磁炉</span></span><button type="button" class="pic-trigger" data-imgs="15,16,17,18,19"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg><span class="n">看图 5</span></button><button type="button" class="del-row-btn" title="删除这一行">&times;</button></li>
 </ul>
+<button type="button" class="add-row-btn">＋ 添加一行</button>
 </article>
 <article class="phase" data-start="1015" data-end="1140">
 <div class="phase-head">
@@ -478,25 +512,28 @@
 <div class="role-col">
 <div class="role-name"><span class="edit" data-key="e82">buffet</span></div>
 <ul class="tasklist">
-<li><span class="txt"><span class="edit" data-key="e83">整理 cool fridge 和 hot box（空闲时归还）</span></span></li>
-<li><span class="txt"><span class="edit" data-key="e84">补充食物／酒水</span></span></li>
+<li><span class="txt"><span class="edit" data-key="e83">整理 cool fridge 和 hot box（空闲时归还）</span></span><button type="button" class="del-row-btn" title="删除这一行">&times;</button></li>
+<li><span class="txt"><span class="edit" data-key="e84">补充食物／酒水</span></span><button type="button" class="del-row-btn" title="删除这一行">&times;</button></li>
 </ul>
+<button type="button" class="add-row-btn">＋ 添加一行</button>
 </div>
 <div class="role-col">
 <div class="role-name"><span class="edit" data-key="e85">floor</span></div>
 <ul class="tasklist">
-<li><span class="txt"><span class="edit" data-key="e86">set clean station</span></span></li>
-<li><span class="txt"><span class="edit" data-key="e87">整理桌面</span></span></li>
-<li><span class="txt"><span class="edit" data-key="e88">咖啡机补充＋</span></span></li>
+<li><span class="txt"><span class="edit" data-key="e86">set clean station</span></span><button type="button" class="del-row-btn" title="删除这一行">&times;</button></li>
+<li><span class="txt"><span class="edit" data-key="e87">整理桌面</span></span><button type="button" class="del-row-btn" title="删除这一行">&times;</button></li>
+<li><span class="txt"><span class="edit" data-key="e88">咖啡机补充＋</span></span><button type="button" class="del-row-btn" title="删除这一行">&times;</button></li>
 </ul>
+<button type="button" class="add-row-btn">＋ 添加一行</button>
 </div>
 <div class="role-col">
 <div class="role-name"><span class="edit" data-key="e89">amenity</span></div>
 <ul class="tasklist">
-<li><span class="txt"><span class="edit" data-key="e90">继续遗漏 amenity</span></span></li>
-<li><span class="txt"><span class="edit" data-key="e91">整理桌面</span></span></li>
-<li><span class="txt"><span class="edit" data-key="e92">擦餐具</span></span></li>
+<li><span class="txt"><span class="edit" data-key="e90">继续遗漏 amenity</span></span><button type="button" class="del-row-btn" title="删除这一行">&times;</button></li>
+<li><span class="txt"><span class="edit" data-key="e91">整理桌面</span></span><button type="button" class="del-row-btn" title="删除这一行">&times;</button></li>
+<li><span class="txt"><span class="edit" data-key="e92">擦餐具</span></span><button type="button" class="del-row-btn" title="删除这一行">&times;</button></li>
 </ul>
+<button type="button" class="add-row-btn">＋ 添加一行</button>
 </div>
 </div>
 </article>
@@ -506,13 +543,14 @@
 </div>
 <h2 class="phase-title"><span class="edit" data-key="e102">7点公共任务</span></h2>
 <ul class="tasklist flat-list">
-<li><span class="txt"><span class="edit" data-key="e95">补饮料／糖／茶／咖啡机／纸杯／餐巾纸</span></span><button type="button" class="pic-trigger" data-imgs="22"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg><span class="n">看图</span></button></li>
-<li><span class="txt"><span class="edit" data-key="e96">beer 等只剩一排再补</span></span></li>
-<li><span class="txt"><span class="edit" data-key="e97">polish 并补充餐具盘子</span></span></li>
-<li><span class="txt"><span class="edit" data-key="e98">擦拭所有空桌／盐胡椒摆放</span></span></li>
-<li class="sub"><span class="txt"><span class="edit" data-key="e99">茶包 brand 统一朝外</span></span></li>
-<li class="sub"><span class="txt"><span class="edit" data-key="e100">polish glass 垒起来2–3层（方便补充），cup 杯口朝下</span></span></li>
+<li><span class="txt"><span class="edit" data-key="e95">补饮料／糖／茶／咖啡机／纸杯／餐巾纸</span></span><button type="button" class="pic-trigger" data-imgs="22"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg><span class="n">看图</span></button><button type="button" class="del-row-btn" title="删除这一行">&times;</button></li>
+<li><span class="txt"><span class="edit" data-key="e96">beer 等只剩一排再补</span></span><button type="button" class="del-row-btn" title="删除这一行">&times;</button></li>
+<li><span class="txt"><span class="edit" data-key="e97">polish 并补充餐具盘子</span></span><button type="button" class="del-row-btn" title="删除这一行">&times;</button></li>
+<li><span class="txt"><span class="edit" data-key="e98">擦拭所有空桌／盐胡椒摆放</span></span><button type="button" class="del-row-btn" title="删除这一行">&times;</button></li>
+<li class="sub"><span class="txt"><span class="edit" data-key="e99">茶包 brand 统一朝外</span></span><button type="button" class="del-row-btn" title="删除这一行">&times;</button></li>
+<li class="sub"><span class="txt"><span class="edit" data-key="e100">polish glass 垒起来2–3层（方便补充），cup 杯口朝下</span></span><button type="button" class="del-row-btn" title="删除这一行">&times;</button></li>
 </ul>
+<button type="button" class="add-row-btn">＋ 添加一行</button>
 </article>
 <article class="phase" data-start="1200" data-end="1245">
 <div class="phase-head">
@@ -523,22 +561,25 @@
 <div class="role-col">
 <div class="role-name"><span class="edit" data-key="e103">buffet</span></div>
 <ul class="tasklist">
-<li><span class="txt"><span class="edit" data-key="e104">清理 buffet 所有东西（2 trolley ＋ 4 gastro pan）</span></span></li>
-<li><span class="txt"><span class="edit" data-key="e105">hot box 食物扔掉，饼干调味等归还</span></span></li>
+<li><span class="txt"><span class="edit" data-key="e104">清理 buffet 所有东西（2 trolley ＋ 4 gastro pan）</span></span><button type="button" class="del-row-btn" title="删除这一行">&times;</button></li>
+<li><span class="txt"><span class="edit" data-key="e105">hot box 食物扔掉，饼干调味等归还</span></span><button type="button" class="del-row-btn" title="删除这一行">&times;</button></li>
 </ul>
+<button type="button" class="add-row-btn">＋ 添加一行</button>
 </div>
 <div class="role-col">
 <div class="role-name"><span class="edit" data-key="e106">floor</span></div>
 <ul class="tasklist">
-<li><span class="txt"><span class="edit" data-key="e107">清理桌子</span></span></li>
-<li><span class="txt"><span class="edit" data-key="e108">归还所有食物糖并拿第二天的 cool food，wrap 好</span></span></li>
-<li><span class="txt"><span class="edit" data-key="e109">清理咖啡机（中间等候时间可以分别处理）</span></span></li>
-<li><span class="txt"><span class="edit" data-key="e110">清理酒水并归还</span></span></li>
+<li><span class="txt"><span class="edit" data-key="e107">清理桌子</span></span><button type="button" class="del-row-btn" title="删除这一行">&times;</button></li>
+<li><span class="txt"><span class="edit" data-key="e108">归还所有食物糖并拿第二天的 cool food，wrap 好</span></span><button type="button" class="del-row-btn" title="删除这一行">&times;</button></li>
+<li><span class="txt"><span class="edit" data-key="e109">清理咖啡机（中间等候时间可以分别处理）</span></span><button type="button" class="del-row-btn" title="删除这一行">&times;</button></li>
+<li><span class="txt"><span class="edit" data-key="e110">清理酒水并归还</span></span><button type="button" class="del-row-btn" title="删除这一行">&times;</button></li>
 </ul>
+<button type="button" class="add-row-btn">＋ 添加一行</button>
 </div>
 </div><div class="group-head"><span class="edit" data-key="e111">共同</span></div><ul class="tasklist flat-list">
-<li><span class="txt"><span class="edit" data-key="e112">根据当天要求处理 jar → 所有 jar 要补满并 wrap</span></span></li>
+<li><span class="txt"><span class="edit" data-key="e112">根据当天要求处理 jar → 所有 jar 要补满并 wrap</span></span><button type="button" class="del-row-btn" title="删除这一行">&times;</button></li>
 </ul>
+<button type="button" class="add-row-btn">＋ 添加一行</button>
 </article>
 <article class="phase" data-start="1245" data-end="1290">
 <div class="phase-head">
@@ -546,12 +587,13 @@
 </div>
 <h2 class="phase-title"><span class="edit" data-key="e121">准备第二天早餐</span></h2>
 <ul class="tasklist flat-list">
-<li><span class="txt"><span class="edit" data-key="e115">set up 早餐</span></span></li>
-<li><span class="txt"><span class="edit" data-key="e116">再次补饮料等</span></span></li>
-<li><span class="txt"><span class="edit" data-key="e117">swap beer and yogurt → 锁柜子 ❗</span></span></li>
-<li><span class="txt"><span class="edit" data-key="e118">再次餐具补充</span></span></li>
-<li><span class="txt"><span class="edit" data-key="e119">检查桌子卫生／盐胡椒</span></span></li>
+<li><span class="txt"><span class="edit" data-key="e115">set up 早餐</span></span><button type="button" class="del-row-btn" title="删除这一行">&times;</button></li>
+<li><span class="txt"><span class="edit" data-key="e116">再次补饮料等</span></span><button type="button" class="del-row-btn" title="删除这一行">&times;</button></li>
+<li><span class="txt"><span class="edit" data-key="e117">swap beer and yogurt → 锁柜子 ❗</span></span><button type="button" class="del-row-btn" title="删除这一行">&times;</button></li>
+<li><span class="txt"><span class="edit" data-key="e118">再次餐具补充</span></span><button type="button" class="del-row-btn" title="删除这一行">&times;</button></li>
+<li><span class="txt"><span class="edit" data-key="e119">检查桌子卫生／盐胡椒</span></span><button type="button" class="del-row-btn" title="删除这一行">&times;</button></li>
 </ul>
+<button type="button" class="add-row-btn">＋ 添加一行</button>
 </article>
 </section>
 
@@ -646,6 +688,39 @@
     e.preventDefault();
     var text = (e.clipboardData || window.clipboardData).getData('text/plain');
     document.execCommand('insertText', false, text);
+  });
+
+  function newKey(){ return 'new-' + Date.now() + '-' + Math.random().toString(36).slice(2, 7); }
+
+  document.addEventListener('click', function(e){
+    if(!document.body.classList.contains('is-editing')) return;
+    var addBtn = e.target.closest('.add-row-btn');
+    if(addBtn){
+      var ul = addBtn.previousElementSibling;
+      if(!ul || !ul.classList.contains('tasklist')) return;
+      var li = document.createElement('li');
+      if(ul.classList.contains('flat-list')) li.className = '';
+      var txt = document.createElement('span');
+      txt.className = 'txt';
+      var editSpan = document.createElement('span');
+      editSpan.className = 'edit';
+      editSpan.dataset.key = newKey();
+      editSpan.contentEditable = 'true';
+      txt.appendChild(editSpan);
+      li.appendChild(txt);
+      var del = document.createElement('button');
+      del.type = 'button'; del.className = 'del-row-btn'; del.title = '删除这一行'; del.innerHTML = '&times;';
+      li.appendChild(del);
+      ul.appendChild(li);
+      editSpan.focus();
+      return;
+    }
+    var delBtn = e.target.closest('.del-row-btn');
+    if(delBtn){
+      var li2 = delBtn.closest('li');
+      if(li2 && confirm('删除这一行？')){ li2.remove(); saveDraft(); }
+      return;
+    }
   });
 
   function enterEdit(){

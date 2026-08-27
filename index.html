@@ -108,11 +108,11 @@
   .brand-sub{display:block; font-family:'Karla',sans-serif; font-weight:500; font-size:0.7rem; letter-spacing:0.08em; text-transform:uppercase; color:var(--ink-muted); margin-top:2px;}
 
   .shift-switch{
-    display:flex; gap:8px; margin-top:12px;
+    display:flex; flex-wrap:wrap; gap:8px; margin-top:12px;
     background:var(--surface-2); padding:4px; border-radius:12px;
   }
   .shift-btn{
-    flex:1; border:none; background:transparent; padding:9px 12px;
+    flex:1 1 calc(50% - 4px); border:none; background:transparent; padding:9px 12px;
     border-radius:9px; font-weight:700; font-size:0.92rem; color:var(--ink-muted);
     cursor:pointer; transition:background .15s ease, color .15s ease;
   }
@@ -216,6 +216,7 @@
   }
   .gn-title{font-size:1.02rem; font-weight:700; color:var(--accent);}
   .gn-sub{font-size:0.74rem; color:var(--ink-muted);}
+  .amenity-placeholder{color:var(--ink-muted); font-size:0.92rem; line-height:1.6; margin:0;}
 
   /* ---------- shift banner ---------- */
   .shift-banner{
@@ -349,22 +350,32 @@
   <div class="shift-switch">
     <button class="shift-btn active" data-shift="am"><span class="edit" data-key="tab-am" data-zh="早班 · AM" data-en="AM Shift">早班 · AM</span></button>
     <button class="shift-btn" data-shift="pm"><span class="edit" data-key="tab-pm" data-zh="晚班 · PM" data-en="PM Shift">晚班 · PM</span></button>
+    <button class="shift-btn" data-shift="notice"><span class="edit" data-key="tab-notice" data-zh="Notice" data-en="Notice">Notice</span></button>
+    <button class="shift-btn" data-shift="amenity"><span class="edit" data-key="tab-amenity" data-zh="Amenity" data-en="Amenity">Amenity</span></button>
   </div>
 </header>
 
 <main>
 
-<section class="general-notes" id="generalNotes">
+<section class="shift-panel panel-notice" data-panel="notice" id="generalNotes" hidden>
 <div class="gn-card">
 <div class="gn-head">
 <h2 class="gn-title"><span class="edit" data-key="e0" data-zh="通用工作细节" data-en="General Notes">通用工作细节</span></h2>
-<span class="gn-sub"><span class="edit" data-key="e1" data-zh="早晚班通用" data-en="Both shifts">早晚班通用</span></span>
 </div>
 <ul class="tasklist flat-list">
 <li><span class="txt"><span class="edit" data-key="e2" data-zh="茶包 brand 统一朝外" data-en="Tea box: brand facing out">茶包 brand 统一朝外</span></span><button type="button" class="del-row-btn" title="删除这一行">&times;</button></li>
 <li><span class="txt"><span class="edit" data-key="e3" data-zh="polish glass 垒起来2–3层（方便补充），cup 杯口朝上" data-en="Stack polished glasses 2–3 high (for easy refilling); cups rim-up">polish glass 垒起来2–3层（方便补充），cup 杯口朝上</span></span><button type="button" class="del-row-btn" title="删除这一行">&times;</button></li>
 </ul>
 <button type="button" class="add-row-btn">＋ 添加一行</button>
+</div>
+</section>
+
+<section class="shift-panel panel-amenity" data-panel="amenity" hidden>
+<div class="gn-card">
+<div class="gn-head">
+<h2 class="gn-title"><span class="edit" data-key="e-amenity-title" data-zh="Amenity" data-en="Amenity">Amenity</span></h2>
+</div>
+<p class="amenity-placeholder"><span class="edit" data-key="e-amenity-empty" data-zh="内容整理中，之后会补充 Amenity 相关的详细流程和现场参考图。" data-en="Content coming soon — detailed amenity procedures and reference photos will be added here.">内容整理中，之后会补充 Amenity 相关的详细流程和现场参考图。</span></p>
 </div>
 </section>
 
@@ -823,13 +834,13 @@
   var PHOTOS = [];
 
   var shiftBtns = document.querySelectorAll('.shift-btn');
-  var panels = { am: document.querySelector('[data-panel="am"]'), pm: document.querySelector('[data-panel="pm"]') };
+  var panels = {};
+  shiftBtns.forEach(function(b){ panels[b.dataset.shift] = document.querySelector('[data-panel="' + b.dataset.shift + '"]'); });
   shiftBtns.forEach(function(b){
     b.addEventListener('click', function(e){
       if(document.body.classList.contains('is-editing') && e.target.closest('.edit')) return;
       shiftBtns.forEach(function(x){ x.classList.toggle('active', x===b); });
-      panels.am.hidden = b.dataset.shift!=='am';
-      panels.pm.hidden = b.dataset.shift!=='pm';
+      Object.keys(panels).forEach(function(key){ panels[key].hidden = (key !== b.dataset.shift); });
     });
   });
 
@@ -966,10 +977,19 @@
     lines.push('');
     var gnTitle = document.querySelector('#generalNotes .gn-title .edit');
     if(gnTitle){
-      lines.push('========== ' + gnTitle.textContent.trim() + '（早晚班通用） ==========');
+      lines.push('========== ' + gnTitle.textContent.trim() + ' ==========');
       document.querySelectorAll('#generalNotes ul.tasklist li').forEach(function(li){
         var t = li.querySelector('.txt .edit');
         lines.push('   - ' + (t ? t.textContent.trim() : ''));
+      });
+      lines.push('');
+    }
+    var amenityPanel = document.querySelector('[data-panel="amenity"]');
+    if(amenityPanel){
+      var amTitle = amenityPanel.querySelector('.gn-title .edit');
+      lines.push('========== ' + (amTitle ? amTitle.textContent.trim() : 'Amenity') + ' ==========');
+      amenityPanel.querySelectorAll('.amenity-placeholder .edit, ul.tasklist li .txt .edit').forEach(function(el){
+        lines.push('   - ' + el.textContent.trim());
       });
       lines.push('');
     }

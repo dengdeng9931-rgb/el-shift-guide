@@ -173,6 +173,12 @@
   ul.tasklist{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:9px;}
   ul.tasklist li{position:relative; padding-left:15px; font-size:0.93rem;}
   ul.tasklist li::before{content:"–"; position:absolute; left:0; top:0; color:var(--ink-muted);}
+  #generalNotes .gn-card{counter-reset:notice-item;}
+  #generalNotes ul.tasklist li{padding-left:24px;}
+  #generalNotes ul.tasklist li::before{
+    counter-increment:notice-item; content:counter(notice-item) "."; 
+    font-weight:700; color:var(--accent); font-variant-numeric:tabular-nums;
+  }
   ul.tasklist li span.txt{display:inline;}
   ul.tasklist li .pic-trigger{vertical-align:middle; margin-left:6px;}
 

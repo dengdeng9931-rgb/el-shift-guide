@@ -357,6 +357,14 @@
     main{padding-top:22px;}
     .phase{padding:22px 24px 20px;}
   }
+
+  .shift-banner-row{display:flex; gap:12px; align-items:stretch; flex-wrap:wrap; margin-bottom:16px;}
+  .shift-banner-row .shift-banner{margin-bottom:0; flex:1 1 220px;}
+  .timeline-nav{flex:1 1 200px; background:var(--surface-2); border:1px solid var(--line); border-radius:12px; padding:10px 14px; max-height:150px; overflow-y:auto;}
+  .timeline-nav-title{font-size:0.72rem; font-weight:700; text-transform:uppercase; letter-spacing:0.06em; color:var(--ink-muted); margin-bottom:8px;}
+  .timeline-nav-list{display:flex; flex-wrap:wrap; gap:6px;}
+  .timeline-nav-list button{font-size:0.78rem; padding:3px 10px; border-radius:999px; border:1px solid var(--line); background:var(--surface); color:var(--ink); cursor:pointer; font-family:inherit;}
+  .timeline-nav-list button:hover{background:var(--accent); color:#fff; border-color:var(--accent);}
 </style>
 </head>
 <body>
@@ -537,7 +545,7 @@
 </section>
 
 <section class="shift-panel panel-am" data-panel="am">
-<div class="shift-banner"><div class="banner-zh"><strong>服务时间</strong>：<br><strong>早餐</strong> 周一至周五 6:30–10:30，周六日及公共假日 6:30–11:00；<br><strong>午间</strong> 12:00–16:00<br><strong>晚餐</strong> 每天 17:00–20:00；</div><div class="banner-en" hidden><strong>Service times</strong>:<br><strong>Breakfast</strong> Mon–Fri 6:30–10:30am, Sat/Sun &amp; public holidays 6:30–11:00am;<br><strong>Midday</strong> 12:00–4:00pm<br><strong>Dinner</strong> every day 5:00–8:00pm;</div></div>
+<div class="shift-banner-row"><div class="shift-banner"><div class="banner-zh"><strong>服务时间</strong>：<br><strong>早餐</strong> 周一至周五 6:30–10:30，周六日及公共假日 6:30–11:00；<br><strong>午间</strong> 12:00–16:00<br><strong>晚餐</strong> 每天 17:00–20:00；</div><div class="banner-en" hidden><strong>Service times</strong>:<br><strong>Breakfast</strong> Mon–Fri 6:30–10:30am, Sat/Sun &amp; public holidays 6:30–11:00am;<br><strong>Midday</strong> 12:00–4:00pm<br><strong>Dinner</strong> every day 5:00–8:00pm;</div></div><div class="timeline-nav" data-timeline-for="am"></div></div>
 <article class="phase" data-start="360" data-end="390">
 <div class="phase-head">
 <div class="phase-time"><span class="edit" data-key="e16" data-zh="06:00 – 06:30">06:00 – 06:30</span></div>
@@ -710,7 +718,7 @@
 </section>
 
 <section class="shift-panel panel-pm" data-panel="pm" hidden>
-<div class="shift-banner"><div class="banner-zh"><strong>服务时间</strong>：<br><strong>早餐</strong> 周一至周五 6:30–10:30，周六日及公共假日 6:30–11:00；<br><strong>午间</strong> 12:00–16:00<br><strong>晚餐</strong> 每天 17:00–20:00；</div><div class="banner-en" hidden><strong>Service times</strong>:<br><strong>Breakfast</strong> Mon–Fri 6:30–10:30am, Sat/Sun &amp; public holidays 6:30–11:00am;<br><strong>Midday</strong> 12:00–4:00pm<br><strong>Dinner</strong> every day 5:00–8:00pm;</div></div>
+<div class="shift-banner-row"><div class="shift-banner"><div class="banner-zh"><strong>服务时间</strong>：<br><strong>早餐</strong> 周一至周五 6:30–10:30，周六日及公共假日 6:30–11:00；<br><strong>午间</strong> 12:00–16:00<br><strong>晚餐</strong> 每天 17:00–20:00；</div><div class="banner-en" hidden><strong>Service times</strong>:<br><strong>Breakfast</strong> Mon–Fri 6:30–10:30am, Sat/Sun &amp; public holidays 6:30–11:00am;<br><strong>Midday</strong> 12:00–4:00pm<br><strong>Dinner</strong> every day 5:00–8:00pm;</div></div><div class="timeline-nav" data-timeline-for="pm"></div></div>
 <article class="phase" data-start="840" data-end="840">
 <div class="phase-head">
 <div class="phase-time"><span class="edit" data-key="e88" data-zh="14:00">14:00</span></div>
@@ -1115,6 +1123,36 @@
   var LANG_KEY = 'elguide_lang_v2';
   var langToggle = document.getElementById('langToggle');
   var editToggleBtn = document.getElementById('editToggle');
+  function buildTimelineNav(shift){
+    var panel = document.querySelector('[data-panel="' + shift + '"]');
+    if(!panel) return;
+    var nav = panel.querySelector('.timeline-nav');
+    if(!nav) return;
+    var lang = document.body.dataset.lang || 'zh';
+    var phases = panel.querySelectorAll(':scope > .phase');
+    nav.innerHTML = '';
+    var title = document.createElement('div');
+    title.className = 'timeline-nav-title';
+    title.textContent = lang === 'en' ? 'Jump to' : '快速跳转';
+    nav.appendChild(title);
+    var list = document.createElement('div');
+    list.className = 'timeline-nav-list';
+    phases.forEach(function(ph, idx){
+      var timeEl = ph.querySelector('.phase-time .edit');
+      var label = timeEl ? timeEl.textContent.trim() : '';
+      if(!label) return;
+      if(!ph.id) ph.id = 'nav-' + shift + '-' + idx;
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.textContent = label;
+      btn.addEventListener('click', function(){
+        ph.scrollIntoView({behavior:'smooth', block:'start'});
+      });
+      list.appendChild(btn);
+    });
+    nav.appendChild(list);
+  }
+
   function applyLang(lang){
     document.querySelectorAll('.edit').forEach(function(el){
       if(lang === 'en'){
@@ -1129,6 +1167,8 @@
     document.documentElement.lang = lang === 'en' ? 'en' : 'zh-CN';
     document.body.dataset.lang = lang;
     try{ localStorage.setItem(LANG_KEY, lang); }catch(err){}
+    buildTimelineNav('am');
+    buildTimelineNav('pm');
   }
 
   langToggle.addEventListener('click', function(){
